@@ -3,6 +3,7 @@ import * as videoService from '../services/videoService'
 import VideoCard from './VideoCard'
 import { connect } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'
+import { Link } from 'react-router-dom'
 
 class VideosGrid extends Component {
   componentDidMount() {
@@ -15,7 +16,13 @@ class VideosGrid extends Component {
     return (
       <div className="card-group row-cols-5">
         {
-          videos.map(video => (<div key={video.id} className="col"><VideoCard video={video}/></div>))
+          videos.map(video => (
+            <Link to={`/${video.id}`}>
+              <div key={video.id} className="col">
+                <VideoCard video={video}/>
+              </div>
+            </Link>
+          ))
         }    
       </div>
     )
