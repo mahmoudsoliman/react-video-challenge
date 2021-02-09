@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 export default class SideBar extends Component {
   render() {
     return (
-      <div class="container-fluid">
-        <div class="row">
-          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-              <ul class="nav flex-column">
-                <li class="nav-item">
+      <div className="container-fluid">
+        <div className="row">
+          <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div className="position-sticky pt-3">
+              <ul className="nav flex-column">
+                <li className="nav-item">
                   <h1>Hello world</h1>
                 </li>
               </ul>
