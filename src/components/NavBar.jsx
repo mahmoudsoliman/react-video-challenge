@@ -6,14 +6,11 @@ import SearchForm from './SearchForm'
 export default class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <div className="container-fluid">  
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav container-fluid row">
-              <li className="col-1">
-                <MenuToggle/>
-              </li>
+              <li className="col"></li>
               <li className="col-3">
                 <SearchForm/>
               </li>
