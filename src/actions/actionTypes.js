@@ -1,0 +1,2 @@
+export const SEARCH_EXECUTED = 'SEARCH_EXECUTED'
+export const QUERY_CHANGED = 'QUERY_CHANGED'

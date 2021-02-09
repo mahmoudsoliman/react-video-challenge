@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
 import * as videoService from '../services/videoService'
 import VideoCard from './VideoCard'
+import { connect } from 'react-redux'
+import { searchExecuted } from '../actions/searchActions'
 
-export default class VideosGrid extends Component {
-  state = {
-    videos: [],
-    query: ''
-  }
-
-  async componentDidMount () {
-    const videos = await videoService.search(this.state.query)
-
-    this.setState({
-      videos
-    })
+class VideosGrid extends Component {
+  componentDidMount() {
+    this.props.searchExecuted(this.props.query)
   }
 
   render() {
-    const {
-      videos 
-    } = this.state
+    const videos = this.props.videos
 
     return (
       <div className="card-group row-cols-5">
@@ -30,3 +21,9 @@ export default class VideosGrid extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  videos: state.search.videos
+})
+
+export default connect(mapStateToProps, {searchExecuted})(VideosGrid)
