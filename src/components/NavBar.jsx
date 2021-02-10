@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DarkModeToggle from './DarkModeToggle'
 import MenuToggle from './MenuToggle'
 import SearchForm from './SearchForm'
+import UserMenu from './UserMenu'
 
 export default class NavBar extends Component {
   render() {
@@ -19,7 +20,8 @@ export default class NavBar extends Component {
                 <DarkModeToggle/>
               </li>
               <li className="col-1">
-                <img src="https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png" className="rounded" width="50"></img>
+                <UserMenu/>
+                {/* <img src="https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png" className="rounded" width="50"></img> */}
               </li>
             </ul>
             

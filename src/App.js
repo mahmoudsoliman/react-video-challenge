@@ -8,6 +8,7 @@ import store from './store'
 import { Switch, Route } from 'react-router-dom'
 import VideoDetails from './components/VideoDetails';
 import Favorites from './components/Favorites';
+import LoginModal from './components/LoginModal';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="App">
         <SideBar/>
         <NavBar/>
+        <LoginModal/>
         <Switch>
           <Route path="/favorites" component={Favorites}/>
           <Route path="/:id" render={(props) => <VideoDetails {...props}/>}/>

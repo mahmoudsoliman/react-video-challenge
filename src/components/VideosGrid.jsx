@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as videoService from '../services/videoService'
 import VideoCard from './VideoCard'
 import { connect } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'
