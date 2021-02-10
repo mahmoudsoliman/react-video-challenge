@@ -2,11 +2,10 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   videos: [],
-  query: ''
+  query: 'wizeline'
 }
 
 export default function (state = initialState, action) {
-  console.log({state, action})
   switch (action.type) {
     case actionTypes.SEARCH_EXECUTED:
       return {

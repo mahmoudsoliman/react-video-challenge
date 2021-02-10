@@ -16,8 +16,8 @@ function App() {
         <SideBar/>
         <NavBar/>
         <Switch>
-        <Route path="/favorites" component={Favorites}/>
-          <Route path="/:id" component={VideoDetails}/>
+          <Route path="/favorites" component={Favorites}/>
+          <Route path="/:id" render={(props) => <VideoDetails {...props}/>}/>
           <Route path="/" component={VideosGrid}/>
         </Switch>
       </div>

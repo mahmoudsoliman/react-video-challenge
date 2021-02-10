@@ -5,7 +5,7 @@ import reducer from './reducers'
 const initialState = {
   search:{
     videos: [],
-    query: ''
+    query: 'wizeline'
   }
 }
 const middlewares = [thunk]
