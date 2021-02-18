@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -37,63 +38,6 @@
   }
 }
 
-/*
- * Sidebar
- */
-
- .sidebar {
-  position: fixed;
-  top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
-
-@media (max-width: 767.98px) {
-  .sidebar {
-    top: 5rem;
-  }
-}
-
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
-}
-
-.sidebar .nav-link.active {
-  color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
-
 .card-grid {
   display:inline-block;
   width:100%;
@@ -104,8 +48,6 @@
 }
 
 
-
-
 #page-wrap {
   text-align: center;
 
@@ -113,75 +55,115 @@
   overflow: auto;
 }
 
-/* Individual item */
-.bm-item {
-  float: left;
-  /* Our sidebar item styling */
-  text-decoration: none;
-  margin-bottom: 10px;
-  color: #160202;
-  transition: color 0.2s;
+.full-nav {
+  width: 100%;
 }
 
-/* Change color on hover */
-.bm-item:hover {
-  color: rgb(0, 0, 0);
+nav.light-theme {
+  background-color: #556BD6;
 }
 
-/* The rest copied directly from react-burger-menu docs */
-
-/* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  margin-top: 15px;
-  margin-left: 15px;
-}
-
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: #ffffff;
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-/* Color/shape of close button cross */
-.bm-cross {
-  background: #bdc3c7;
-}
-
-/* General sidebar styles */
-.bm-menu {
-  background: #ffffff;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: #b8b7ad;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-
-.navbar-light {
+nav.dark-theme {
   background-color: #1c5476;
 }
 
+div.App.light-theme {
+  background-color: white;
+}
+
+div.App.dark-theme {
+  background-color: #303030;
+}
+
+div.card.light-theme {
+  background-color: white;
+}
+
+div.card.dark-theme {
+  background-color: #424242;
+}
+
+h5.card-title.light-theme {
+  color: black;
+}
+
+h5.card-title.dark-theme {
+  color: white;
+}
+
+p.card-text.light-theme {
+  color: grey;
+}
+
+p.card-text.dark-theme {
+  color: grey;
+}
+
+.fa-home{
+  color: white;
+}
+
+.home-title {
+  font-size: 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+h1.home-title.light-theme {
+  color: black;
+}
+
+h1.home-title.dark-theme {
+  color: white;
+}
+
 .side-list {
-  width: 20%;
+  width: 100%;
+  float: right;
+}
+
+.side-list-item {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+}
+
+
+
+.side-list-label {
+  color: black;
+  height: 25%;
+  width: 70%;
+  text-align: center;
+  display: inline-block
+}
+
+.side-list-image {
+  width: 30%;
+  display: inline-block
+}
+
+div.side-list-label.light-theme {
+  color: black;
+}
+
+div.side-list-label.dark-theme {
+  color: white;
+}
+
+p.light-theme {
+  color: grey;
+}
+
+p.dark-theme {
+  color: grey;
+}
+
+h2.light-theme {
+  color: black;
+}
+
+h2.dark-theme {
+  color: white;
 }

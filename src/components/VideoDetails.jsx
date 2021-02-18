@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'
 import VideosList from './VideosList'
 import VideoPlayer from './VideoPlayer'
-import * as videoService from '../services/videoService'
 
 class VideoDetails extends Component {
   getCurrentVideo = (videoId) => {

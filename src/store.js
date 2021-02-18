@@ -6,6 +6,13 @@ const initialState = {
   search:{
     videos: [],
     query: 'wizeline'
+  },
+  user: {
+    currentUser: null,
+    loginMdoalOpen: false
+  },
+  theme: {
+    darkTheme: false
   }
 }
 const middlewares = [thunk]

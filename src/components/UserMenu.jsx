@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Dropdown } from 'react-bootstrap'
 import { loginModalTriggered, userLoggedOut } from '../actions/userActions'
+import { withRouter } from 'react-router-dom'
 
 const AVATAR_IMAGE_URL = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 
@@ -21,12 +22,20 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 class UserMenu extends Component {
   handleSelect = (option) => {
-    const currentUser = this.props.currentUser
-    if(currentUser){
-      this.props.userLoggedOut()
+    console.log(option)
+    if(option === '1'){
+      const currentUser = this.props.currentUser
+      console.log({currentUser})
+      if(currentUser){
+        this.props.userLoggedOut()
+      }
+      else{
+        console.log('asdfasdf')
+        this.props.loginModalTriggered(true)
+      }
     }
-    else{
-      this.props.loginModalTriggered(true)
+    else if(option === '2'){
+      this.props.history.push("/favorites")
     }
   }
 
@@ -40,6 +49,9 @@ class UserMenu extends Component {
     
         <Dropdown.Menu>
           <Dropdown.Item eventKey="1">{currentUser? 'Logout' : 'Login'}</Dropdown.Item>
+          {
+            currentUser? <Dropdown.Item eventKey="2">Favorites</Dropdown.Item> : ""
+          }
         </Dropdown.Menu>
       </Dropdown>
     )
@@ -51,4 +63,4 @@ const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 })
 
-export default connect(mapStateToProps, {loginModalTriggered, userLoggedOut})(UserMenu)
+export default withRouter(connect(mapStateToProps, {loginModalTriggered, userLoggedOut})(UserMenu))

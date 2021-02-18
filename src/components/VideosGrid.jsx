@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import VideoCard from './VideoCard'
 import { connect } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'
+
 import { Link } from 'react-router-dom'
 
 class VideosGrid extends Component {
