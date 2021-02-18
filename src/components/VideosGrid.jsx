@@ -7,13 +7,11 @@ import { Link } from 'react-router-dom'
 
 class VideosGrid extends Component {
   componentDidMount() {
-    console.log({query: this.props.query})
     this.props.searchExecuted(this.props.query)
   }
 
   render() {
     const videos = this.props.videos
-    console.log({videos})
     return (
       <div className="card-group row-cols-5">
         {

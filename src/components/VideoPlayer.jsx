@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import ReactPlayer from 'react-player/youtube'
 import { connect } from 'react-redux'
-import { darkThemeTriggered } from '../actions/themeActions'
+import { videoAddedToFavorites, videoRemovedFromFavorites } from '../actions/userActions'
 
 class VideoPlayer extends Component {
+
+  isFavorite = (video) => {
+    console.log({favorites: this.props.favorites})
+    const fav = this.props.favorites.find(vid => vid.id === video.id)
+    const isFav = !_.isNil(fav)
+    console.log({isFav})
+    return isFav
+  } 
+
+  handleFavorite = (video) => {
+    console.log({video})
+    console.log(this.isFavorite(video))
+    this.isFavorite(video)?  this.props.videoRemovedFromFavorites(video) : this.props.videoAddedToFavorites(video)
+  }
+
   render() {
     const video = this.props.video
     return (
       <div className="player-wrapper m-4">
         <ReactPlayer url={video.url} width="100%" />
         <h2 className={`my-4 float-left ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>{video.title}</h2>
-        <btn className="btn btn-primary m-3 float-right">Add to favorites</btn>
+        {
+          this.props.currentUser? (<i 
+            className={`fa ${this.isFavorite(video)? 'fa-star' : 'fa-star-o'} float-right m-3  ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`} 
+            onClick={() => this.handleFavorite(video)}
+            />) : ""
+        }
         <p className={`float-left ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>{video.description}</p>
       </div>
     )
@@ -18,7 +39,9 @@ class VideoPlayer extends Component {
 }
 
 const mapStateToProps = state => ({
-  darkTheme: state.theme.darkTheme
+  darkTheme: state.theme.darkTheme,
+  favorites: state.user.favorites,
+  currentUser: state.user.currentUser
 })
 
-export default connect(mapStateToProps, {darkThemeTriggered})(VideoPlayer)
+export default connect(mapStateToProps, {videoAddedToFavorites, videoRemovedFromFavorites})(VideoPlayer)

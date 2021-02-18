@@ -27,3 +27,24 @@ export const userLoggedOut = () => dispatch => {
     }
   })
 }
+
+export const videoAddedToFavorites = (video) => dispatch => {
+  console.log('Action')
+  console.log({video})
+  dispatch({
+    type: actionTypes.VIDEO_ADDED_TO_FAVORITES,
+    payload: {
+      video
+    }
+  })
+}
+
+export const videoRemovedFromFavorites = (video) => dispatch => {
+  console.log('Remoooovee')
+  dispatch({
+    type: actionTypes.VIDEO_REMOVED_FROM_FAVORITES,
+    payload: {
+      video
+    }
+  })
+}

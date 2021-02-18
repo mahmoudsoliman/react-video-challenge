@@ -167,3 +167,31 @@ h2.light-theme {
 h2.dark-theme {
   color: white;
 }
+
+i.fa-star.light-theme {
+  color: blue;
+}
+
+i.fa-star.dark-theme {
+  color: white;
+}
+
+i.fa-star-o.light-theme {
+  color: blue;
+}
+
+i.fa-star-o.dark-theme {
+  color: white;
+}
+
+modal.light-theme {
+  background-color: white;
+}
+
+modal.dark-theme {
+  background-color: 424242;
+}
+
+modal-dark-theme {
+  background-color: 424242;
+}

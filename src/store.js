@@ -9,7 +9,8 @@ const initialState = {
   },
   user: {
     currentUser: null,
-    loginMdoalOpen: false
+    loginMdoalOpen: false,
+    favorites: []
   },
   theme: {
     darkTheme: false

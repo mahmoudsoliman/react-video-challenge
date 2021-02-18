@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { loginModalTriggered, userLoggedIn } from '../actions/userActions'
 import * as authService from '../services/authService'
+import LoginForm from './LoginForm'
 
 class LoginModal extends Component {
   state = {
@@ -12,6 +13,11 @@ class LoginModal extends Component {
   }
 
   handleClose = () => {
+    this.setState({
+      username: '',
+      password: '',
+      errorMessage: null
+    })
     this.props.loginModalTriggered(false)
   }
 
@@ -23,6 +29,11 @@ class LoginModal extends Component {
 
     try {
       const user = await authService.login(username, password)
+      this.setState({
+        username: '',
+        password: '',
+        errorMessage: null
+      })
       this.props.userLoggedIn(user)
     } catch (error) {
       this.setState({
@@ -48,22 +59,10 @@ class LoginModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form.Group >
-            {
-              errorMessage?
-              <div className="alert alert-warning row">
-                <div className="col-1"> 
-                  <i className="fa fa-exclamation-circle"></i>
-                </div>
-                <div className="col">
-                  {errorMessage}
-                </div>
-              </div> : ""
-            }
-            <Form.Control name="username" className="my-2 border-top-0 border-left-0 border-right-0" type="text" onChange={this.handleChange} value={username} placeholder="Username"/>     
-            <Form.Control name="password" className="my-2 border-top-0 border-left-0 border-right-0" type="password" onChange={this.handleChange} value={password} placeholder="Password"/>      
-          </Form.Group>
+        <Modal.Body className="modal-dark-theme">
+          {
+            this.props.loginModalOpen? (<LoginForm username={username} password={password} errorMessage={errorMessage} onChange={this.handleChange}/>) : ""
+          }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.handleClose}>

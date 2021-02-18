@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   loginModalOpen: false,
-  currentUser: null
+  currentUser: null,
+  favorites: []
 }
 
 export default function (state = initialState, action) {
@@ -22,6 +23,22 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currentUser: action.payload.currentUser
+      }
+    case actionTypes.VIDEO_ADDED_TO_FAVORITES:
+      console.log('reduer')
+      console.log({video: action.payload.video})
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload.video]
+      }
+    case actionTypes.VIDEO_REMOVED_FROM_FAVORITES:
+      const favs = state.favorites
+      const filtered = state.favorites.filter(video => video.id !== action.payload.video.id)
+      console.log({favs})
+      console.log({filtered})
+      return {
+        ...state,
+        favorites: state.favorites.filter(video => video.id !== action.payload.video.id)
       }
     default:
       return state
