@@ -19,8 +19,8 @@ class VideoPlayer extends Component {
   render() {
     const video = this.props.video
     return (
-      <div className="player-wrapper m-4">
-        <ReactPlayer url={video.url} width="100%" />
+      <div className="player-wrapper">
+        <ReactPlayer className="react-player" url={video.url} width="100%" height="100%"/>
         <h2 className={`my-4 float-left ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>{video.title}</h2>
         {
           this.props.currentUser? (<i 
