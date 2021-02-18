@@ -7,16 +7,12 @@ import { videoAddedToFavorites, videoRemovedFromFavorites } from '../actions/use
 class VideoPlayer extends Component {
 
   isFavorite = (video) => {
-    console.log({favorites: this.props.favorites})
     const fav = this.props.favorites.find(vid => vid.id === video.id)
     const isFav = !_.isNil(fav)
-    console.log({isFav})
     return isFav
   } 
 
   handleFavorite = (video) => {
-    console.log({video})
-    console.log(this.isFavorite(video))
     this.isFavorite(video)?  this.props.videoRemovedFromFavorites(video) : this.props.videoAddedToFavorites(video)
   }
 

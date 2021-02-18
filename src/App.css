@@ -184,14 +184,26 @@ i.fa-star-o.dark-theme {
   color: white;
 }
 
-modal.light-theme {
+.modal-content.light-theme {
   background-color: white;
 }
 
-modal.dark-theme {
-  background-color: 424242;
+.modal-content.dark-theme {
+  background-color: #424242;
 }
 
-modal-dark-theme {
-  background-color: 424242;
+.modal-title.light-theme {
+  color: black;
+}
+
+.modal-title.dark-theme {
+  color: white;
+}
+
+button.close.light-theme {
+  color: black;
+}
+
+button.close.light-theme {
+  color: white;
 }

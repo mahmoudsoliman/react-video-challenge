@@ -55,13 +55,13 @@ class LoginModal extends Component {
     } = this.state
 
     return (
-      <Modal show={this.props.loginModalOpen} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+      <Modal show={this.props.loginModalOpen} onHide={this.handleClose} keyboard contentClassName={this.props.darkTheme? 'dark-theme' : 'light-theme'}>
+        <Modal.Header>
+          <Modal.Title className={this.props.darkTheme? 'dark-theme' : 'light-theme'}>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="modal-dark-theme">
+        <Modal.Body >
           {
-            this.props.loginModalOpen? (<LoginForm username={username} password={password} errorMessage={errorMessage} onChange={this.handleChange}/>) : ""
+            this.props.loginModalOpen? (<LoginForm username={username} password={password} errorMessage={errorMessage} handleChange={this.handleChange}/>) : ""
           }
         </Modal.Body>
         <Modal.Footer>
@@ -78,7 +78,8 @@ class LoginModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  loginModalOpen: state.user.loginModalOpen
+  loginModalOpen: state.user.loginModalOpen,
+  darkTheme: state.theme.darkTheme
 })
 
 export default connect(mapStateToProps, {loginModalTriggered, userLoggedIn})(LoginModal)

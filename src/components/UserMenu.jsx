@@ -22,15 +22,12 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 class UserMenu extends Component {
   handleSelect = (option) => {
-    console.log(option)
     if(option === '1'){
       const currentUser = this.props.currentUser
-      console.log({currentUser})
       if(currentUser){
         this.props.userLoggedOut()
       }
       else{
-        console.log('asdfasdf')
         this.props.loginModalTriggered(true)
       }
     }
