@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { darkThemeTriggered } from '../actions/themeActions'
 
 class VideoCard extends Component {
   render() {
@@ -24,4 +23,4 @@ const mapStateToProps = state => ({
   darkTheme: state.theme.darkTheme
 })
 
-export default connect(mapStateToProps, {darkThemeTriggered})(VideoCard)
+export default connect(mapStateToProps)(VideoCard)

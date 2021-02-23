@@ -17,4 +17,4 @@ const mapStateToProps = state => ({
   darkTheme: state.theme.darkTheme
 })
 
-export default connect(mapStateToProps, {})(Home)
+export default connect(mapStateToProps)(Home)

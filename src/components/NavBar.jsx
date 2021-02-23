@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import DarkModeToggle from './DarkModeToggle'
 import SearchForm from './SearchForm'
 import UserMenu from './UserMenu'
-import { darkThemeTriggered } from '../actions/themeActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -43,4 +42,4 @@ const mapStateToProps = state => ({
   darkTheme: state.theme.darkTheme
 })
 
-export default connect(mapStateToProps, {darkThemeTriggered})(NavBar)
+export default connect(mapStateToProps)(NavBar)
