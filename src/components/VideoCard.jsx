@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class VideoCard extends Component {
+export class VideoCard extends Component {
   render() {
     const {
       video

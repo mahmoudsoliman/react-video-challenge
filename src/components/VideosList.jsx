@@ -24,8 +24,6 @@ class VideosList extends Component {
                     <div className={`col side-list-label text-truncate ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>
                       {video.title}
                     </div>
-                    
-                   
                   </div>
                 </Link>
               </li>
