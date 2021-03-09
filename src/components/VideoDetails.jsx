@@ -14,7 +14,7 @@ class VideoDetails extends Component {
     const video = this.getCurrentVideo(videoId)
     if(!video) return <Redirect to="/"/>
     return (
-      <div className="row">
+      <div className="row m-2">
         <div className="col-8">
           <VideoPlayer video={video} />
         </div>
