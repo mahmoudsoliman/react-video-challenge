@@ -20,6 +20,10 @@ export const mockVideoSearch = () => {
   ]
 }
 
+export const mockQueryChanged = () => {
+  searchActions.queryChanged = jest.fn()
+}
+
 export const mockVideoObject = () => {
   return {
     id: '1234',

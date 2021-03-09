@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { searchExecuted, queryChanged } from '../actions/searchActions'
 
-class SearchForm extends Component {
+export class SearchForm extends Component {
 
   onQueryChange = (value) => {
     this.props.queryChanged(value)
@@ -10,6 +10,7 @@ class SearchForm extends Component {
 
   onKeyPress = (e) => {
     if (e.key === "Enter") {
+      console.log({e})
       e.preventDefault();
       this.props.searchExecuted(e.target.value)
     }
