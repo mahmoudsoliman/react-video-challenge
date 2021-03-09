@@ -6,7 +6,7 @@ const initialState = {
   favorites: []
 }
 
-export default function (state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.LOGIN_MODAL_TRIGGERED:
       return {
@@ -30,8 +30,6 @@ export default function (state = initialState, action) {
         favorites: [...state.favorites, action.payload.video]
       }
     case actionTypes.VIDEO_REMOVED_FROM_FAVORITES:
-      const favs = state.favorites
-      const filtered = state.favorites.filter(video => video.id !== action.payload.video.id)
       return {
         ...state,
         favorites: state.favorites.filter(video => video.id !== action.payload.video.id)

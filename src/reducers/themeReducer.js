@@ -4,7 +4,7 @@ const initialState = {
   darkTheme: false
 }
 
-export default function (state = initialState, action) {
+export default function themeReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.DARK_THEME_TRIGGERED:
       return {

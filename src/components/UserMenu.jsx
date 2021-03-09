@@ -41,7 +41,7 @@ class UserMenu extends Component {
     return (
         <Dropdown onSelect={this.handleSelect}>
         <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-          <img className="rounded-circle" width="50px" src={currentUser? currentUser.avatarUrl : AVATAR_IMAGE_URL}/>
+          <img className="rounded-circle" width="50px" alt="user" src={currentUser? currentUser.avatarUrl : AVATAR_IMAGE_URL}/>
         </Dropdown.Toggle>
     
         <Dropdown.Menu>

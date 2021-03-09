@@ -17,7 +17,7 @@ class Favorites extends Component {
                   <Link to={`/${video.id}`}>
                     <div className="row bg-transparent side-list-item">
                       <div className="col-3  side-list-image">
-                        <img src={video.thumbnail}/>
+                        <img alt="..." src={video.thumbnail}/>
                       </div>
                       <div className={`col side-list-label text-truncate ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>
                         {video.title}
