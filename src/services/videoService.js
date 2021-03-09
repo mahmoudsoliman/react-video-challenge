@@ -3,7 +3,7 @@ import axios from 'axios'
 export const search = async (query) => {
   const res = await axios.get('https://www.googleapis.com/youtube/v3/search', {
     params: {
-      key: process.env.YOUTUBE_API_KEY,
+      key: process.env.REACT_APP_YOUTUBE_API_KEY,
       type: 'video',
       part: 'snippet',
       maxResults: 10,
