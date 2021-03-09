@@ -5,7 +5,7 @@ import { searchExecuted } from '../actions/searchActions'
 
 import { Link } from 'react-router-dom'
 
-class VideosGrid extends Component {
+export class VideosGrid extends Component {
   componentDidMount() {
     this.props.searchExecuted(this.props.query)
   }

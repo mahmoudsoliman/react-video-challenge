@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { videoAddedToFavorites, videoRemovedFromFavorites } from '../actions/userActions'
 
 class Favorites extends Component {
   render() {
@@ -45,4 +44,4 @@ const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 })
 
-export default connect(mapStateToProps, {videoAddedToFavorites, videoRemovedFromFavorites})(Favorites)
+export default connect(mapStateToProps)(Favorites)

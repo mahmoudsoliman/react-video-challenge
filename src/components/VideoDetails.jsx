@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { searchExecuted } from '../actions/searchActions'
 import VideosList from './VideosList'
 import VideoPlayer from './VideoPlayer'
 
@@ -32,4 +31,4 @@ const mapStateToProps = state => ({
   query: state.search.query
 })
 
-export default connect(mapStateToProps, {searchExecuted})(VideoDetails)
+export default connect(mapStateToProps)(VideoDetails)

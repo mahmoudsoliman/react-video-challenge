@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import VideosGrid from './VideosGrid'
 
-class Home extends Component {
+export class Home extends Component {
   render() {
     return (
       <div>
@@ -16,5 +16,5 @@ class Home extends Component {
 const mapStateToProps = state => ({
   darkTheme: state.theme.darkTheme
 })
-
-export default connect(mapStateToProps, {})(Home)
+ 
+export default connect(mapStateToProps)(Home)
