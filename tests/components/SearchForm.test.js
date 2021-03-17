@@ -1,14 +1,24 @@
 import React from 'react'
 import { SearchForm } from '../../src/components/SearchForm'
 import { shallow } from 'enzyme'
-import { queryChanged, searchExecuted } from '../../src/actions/searchActions'
+import * as searchActions from '../../src/actions/searchActions'
+import { mockVideoSearch } from '../helpers/mocks'
+
+const mockProps = () => {
+  const queryChanged = jest.spyOn(searchActions, 'queryChanged')
+  const searchExecuted = jest.spyOn(searchActions, 'searchExecuted')
+  return {
+    queryChanged,
+    searchExecuted
+  }
+}
 
 describe('SearchForm Component Tests', () => {
   test('should render form', () => {
+
     const query = 'test'
     const props = {
-      queryChanged,
-      searchExecuted,
+      ...mockProps(),
       query
     }
     const wrapper = shallow(<SearchForm {...props}/>)
@@ -20,8 +30,7 @@ describe('SearchForm Component Tests', () => {
   test('should render input field', () => {
     const query = 'test'
     const props = {
-      queryChanged,
-      searchExecuted,
+      ...mockProps(),
       query
     }
     const wrapper = shallow(<SearchForm {...props}/>)
@@ -37,16 +46,47 @@ describe('SearchForm Component Tests', () => {
 
   test('should call query changed action when changing input value', () => {
     const query = 'test'
+    const {queryChanged, searchExecuted} = mockProps()
     const props = {
       queryChanged,
       searchExecuted,
       query
     }
+    
     const wrapper = shallow(<SearchForm {...props}/>)
     const input = wrapper.find('input')
-    input.simulate('change', { target: { value: 'wizeline' } });
-    input.simulate('keypress', {key: 'Enter'})
-    expect(queryChanged).toBeCalledWith('wizeline')
+    const preventDefault = jest.fn()
+    input.simulate('change', {
+      target: {
+        value: 'wizeline'
+      },
+      preventDefault 
+    });
+    
+    expect(queryChanged).toHaveBeenCalledWith('wizeline')
   })
   
+  test('should call search executed action with input value when pressing enter', () => {
+    const query = 'test'
+    const {queryChanged, searchExecuted} = mockProps()
+    const props = {
+      queryChanged,
+      searchExecuted,
+      query
+    }
+    
+    const wrapper = shallow(<SearchForm {...props}/>)
+    const input = wrapper.find('input')
+    const preventDefault = jest.fn()
+    
+    input.simulate('keypress', {
+      target: {
+        value: 'wizeline' 
+      }, 
+      key: 'Enter',
+      preventDefault
+    })
+    
+    expect(searchExecuted).toHaveBeenCalledWith('wizeline')
+  })
 })

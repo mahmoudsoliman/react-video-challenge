@@ -10,7 +10,6 @@ export class SearchForm extends Component {
 
   onKeyPress = (e) => {
     if (e.key === "Enter") {
-      console.log({e})
       e.preventDefault();
       this.props.searchExecuted(e.target.value)
     }
