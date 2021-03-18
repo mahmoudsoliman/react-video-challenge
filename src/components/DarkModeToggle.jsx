@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { darkThemeTriggered } from '../actions/themeActions'
 
-class DarkModeToggle extends Component {
+export class DarkModeToggle extends Component {
   handleChange = () => {
     if(this.props.darkTheme){
       this.props.darkThemeTriggered(false)

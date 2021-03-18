@@ -2,7 +2,6 @@ import React from 'react'
 import { SearchForm } from '../../src/components/SearchForm'
 import { shallow } from 'enzyme'
 import * as searchActions from '../../src/actions/searchActions'
-import { mockVideoSearch } from '../helpers/mocks'
 
 const mockProps = () => {
   const queryChanged = jest.spyOn(searchActions, 'queryChanged')
