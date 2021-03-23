@@ -1,11 +1,11 @@
 import React from 'react'
 import { Home } from '../../src/components/Home'
 import { shallow } from 'enzyme'
-import { mockVideoSearch } from '../helpers/mocks'
+import { mockSearchExecutedAction } from '../helpers/mocks'
 
 describe('Home Component Tests', () => {
   it('should have light theme header', () => {
-    mockVideoSearch()
+    mockSearchExecutedAction()
     const props = {
       darkTheme: false
     }
@@ -18,7 +18,7 @@ describe('Home Component Tests', () => {
   })
 
   it('should have dark theme header', () => {
-    mockVideoSearch()
+    mockSearchExecutedAction()
     const props = {
       dispatch: jest.fn(),
       darkTheme: true

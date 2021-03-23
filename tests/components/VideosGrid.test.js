@@ -1,12 +1,12 @@
 import React from 'react'
 import { VideosGrid } from '../../src/components/VideosGrid'
 import { shallow } from 'enzyme'
-import { mockVideoSearch } from '../helpers/mocks'
+import { mockSearchExecutedAction } from '../helpers/mocks'
 import {searchExecuted} from '../../src/actions/searchActions'
 
 describe('VideosGrid Component Tests', () => {
   it('should render card group div', () => {
-    const videos = mockVideoSearch()
+    const videos = mockSearchExecutedAction()
     const props = {
       query: 'test',
       videos,
@@ -19,7 +19,7 @@ describe('VideosGrid Component Tests', () => {
   })
 
   it('should render as many links as number of videos', () => {
-    const videos = mockVideoSearch()
+    const videos = mockSearchExecutedAction()
     const props = {
       query: 'test',
       videos,
@@ -31,7 +31,7 @@ describe('VideosGrid Component Tests', () => {
   })
 
   it('should render links containing div that contains the VideoCard', () => {
-    const videos = mockVideoSearch()
+    const videos = mockSearchExecutedAction()
     const props = {
       query: 'test',
       videos,
