@@ -1,7 +1,8 @@
 import React from 'react'
-import { DarkModeToggle } from '../../src/components/DarkModeToggle'
+import DarkModeToggle  from '../../src/components/DarkModeToggle'
 import { shallow } from 'enzyme'
 import * as themeActions from '../../src/actions/themeActions'
+import * as reactredux from 'react-redux'
 
 const mockProps = () => {
   const darkThemeTriggered = jest.spyOn(themeActions, 'darkThemeTriggered')
@@ -16,7 +17,10 @@ describe('DarkModeToggle component tests', () => {
       ...mockProps(),
       darkTheme: false
     }
-    const wrapper = shallow(<DarkModeToggle {...props}/>)
+    const darkTehme = false
+    reactredux.useSelector = jest.fn(() => darkTehme)
+    reactredux.useDispatch = jest.fn( () => () => {})
+    const wrapper = shallow(<DarkModeToggle />)
     const customControl = wrapper.find('div')
     const controlClasses = customControl.props().className.split(' ')
     expect(controlClasses).toContain('custom-control')
@@ -24,11 +28,10 @@ describe('DarkModeToggle component tests', () => {
   })
 
   test('should render input field', () => {
-    const props = {
-      ...mockProps(),
-      darkTheme: false
-    }
-    const wrapper = shallow(<DarkModeToggle {...props}/>)
+    const darkTehme = false
+    reactredux.useSelector = jest.fn(() => darkTehme)
+    reactredux.useDispatch = jest.fn( () => () => {})
+    const wrapper = shallow(<DarkModeToggle />)
     const input = wrapper.find('input')
     const inputClass = input.props().className
     const inputType = input.props().type
@@ -39,11 +42,10 @@ describe('DarkModeToggle component tests', () => {
   })
   
   test('should render Dark Mode label', () => {
-    const props = {
-      ...mockProps(),
-      darkTheme: false
-    }
-    const wrapper = shallow(<DarkModeToggle {...props}/>)
+    const darkTehme = false
+    reactredux.useSelector = jest.fn(() => darkTehme)
+    reactredux.useDispatch = jest.fn( () => () => {})
+    const wrapper = shallow(<DarkModeToggle />)
     const label = wrapper.find('label')
     const labelClasses = label.props().className.split(' ')
     const labelHtmlFor = label.props().htmlFor
@@ -55,29 +57,27 @@ describe('DarkModeToggle component tests', () => {
   })
 
   test('should call darkThemeTriggered action with true when enabling dark mode', () => {
-    const { darkThemeTriggered } = mockProps()
-    const props = {
-      darkThemeTriggered,
-      darkTheme: false
-    }
-    const wrapper = shallow(<DarkModeToggle {...props}/>)
+    const darkTehme = false
+    reactredux.useSelector = jest.fn(() => darkTehme)
+    const dispatch = jest.fn()
+    reactredux.useDispatch = jest.fn( () => dispatch)
+    const wrapper = shallow(<DarkModeToggle />)
     const input = wrapper.find('input')
     input.simulate('change')
 
-    expect(darkThemeTriggered).toHaveBeenCalledWith(true)
+    expect(dispatch).toHaveBeenCalled()
   })
   
 
   test('should call darkThemeTriggered action with false when disabling dark mode', () => {
-    const { darkThemeTriggered } = mockProps()
-    const props = {
-      darkThemeTriggered,
-      darkTheme: true
-    }
-    const wrapper = shallow(<DarkModeToggle {...props}/>)
+    const darkTehme = true
+    reactredux.useSelector = jest.fn(() => darkTehme)
+    const dispatch = jest.fn()
+    reactredux.useDispatch = jest.fn( () => dispatch)
+    const wrapper = shallow(<DarkModeToggle />)
     const input = wrapper.find('input')
     input.simulate('change')
 
-    expect(darkThemeTriggered).toHaveBeenCalledWith(false)
+    expect(dispatch).toHaveBeenCalled()
   })
 })
