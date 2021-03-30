@@ -1,15 +1,15 @@
 import React from 'react'
-import { Home } from '../../src/components/Home'
+import Home from '../../src/components/Home'
 import { shallow } from 'enzyme'
-import { mockSearchExecutedAction } from '../helpers/mocks'
+import * as reactredux from 'react-redux'
 
 describe('Home Component Tests', () => {
   it('should have light theme header', () => {
-    mockSearchExecutedAction()
-    const props = {
-      darkTheme: false
-    }
-    const wrapper = shallow(<Home {...props}/>)
+    const darkTheme = false
+    const useSelectorMock = jest.fn().mockReturnValueOnce(darkTheme)
+    reactredux.useSelector = useSelectorMock
+
+    const wrapper = shallow(<Home />)
     const header = wrapper.find('h1')
     const classes = header.props().className.split(' ')
     expect(classes).toContain('home-title')
@@ -18,12 +18,11 @@ describe('Home Component Tests', () => {
   })
 
   it('should have dark theme header', () => {
-    mockSearchExecutedAction()
-    const props = {
-      dispatch: jest.fn(),
-      darkTheme: true
-    }
-    const wrapper = shallow(<Home {...props}/>)
+    const darkTheme = true
+    const useSelectorMock = jest.fn().mockReturnValueOnce(darkTheme)
+    reactredux.useSelector = useSelectorMock
+
+    const wrapper = shallow(<Home />)
     const header = wrapper.find('h1')
     const classes = header.props().className.split(' ')
     expect(classes).toContain('home-title')
