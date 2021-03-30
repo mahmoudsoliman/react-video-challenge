@@ -1,31 +1,29 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { searchExecuted, queryChanged } from '../actions/searchActions'
 
-export class SearchForm extends Component {
+export default function SearchForm() {
+  const query = useSelector(state => state.search.query)
 
-  onQueryChange = (value) => {
-    this.props.queryChanged(value)
+  const dispatch = useDispatch()
+  let history = useHistory()
+
+  const onQueryChange = (value) => {
+    dispatch(queryChanged(value))
   }
 
-  onKeyPress = (e) => {
+  const onKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      this.props.searchExecuted(e.target.value)
+      dispatch(searchExecuted(e.target.value))
+      history.push('/')
     }
   }
 
-  render() {
-    return (
-      <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" value={this.props.query} onKeyPress={(e) => this.onKeyPress(e)} onChange={(e) => this.onQueryChange(e.target.value)}/>
-      </form>
-    )
-  }
+  return (
+    <form className="d-flex">
+      <input className="form-control me-2" type="search" placeholder="Search" value={query} onKeyPress={(e) => onKeyPress(e)} onChange={(e) => onQueryChange(e.target.value)}/>
+    </form>
+  )
 }
-
-const mapStateToProps = state => ({
-  query: state.search.query
-})
-
-export default connect(mapStateToProps, {searchExecuted, queryChanged})(SearchForm)

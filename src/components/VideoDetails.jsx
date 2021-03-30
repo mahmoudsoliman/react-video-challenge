@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 import VideosList from './VideosList'
 import VideoPlayer from './VideoPlayer'
 import * as videoService from '../services/videoService'

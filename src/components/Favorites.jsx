@@ -2,8 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-import React from 'react'
-
 export default function Favorites() {
   const currentUser = useSelector(state => state.user.currentUser)
   const videos = useSelector(state => state.user.favorites)
