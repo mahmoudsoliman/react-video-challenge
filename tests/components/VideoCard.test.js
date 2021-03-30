@@ -1,15 +1,18 @@
 import React from 'react'
-import { VideoCard } from '../../src/components/VideoCard'
+import VideoCard from '../../src/components/VideoCard'
 import { shallow } from 'enzyme'
 import { mockVideoObject } from '../helpers/mocks'
+import * as reactredux from 'react-redux'
 
 describe('VideoCard Component Tests', () => {
   it('should div with light theme class', () => {
     const video = mockVideoObject()
     const props = {
-      darkTheme: false,
       video
     }
+    const darkTehme = false
+    reactredux.useSelector = jest.fn(() => darkTehme)
+
     const wrapper = shallow(<VideoCard {...props}/>)
     const card = wrapper.find('.card')
     const classes = card.props().className.split(' ')
@@ -19,9 +22,11 @@ describe('VideoCard Component Tests', () => {
   it('should div with dark theme class', () => {
     const video = mockVideoObject()
     const props = {
-      darkTheme: true,
       video
     }
+    const darkTehme = true
+    reactredux.useSelector = jest.fn(() => darkTehme)
+
     const wrapper = shallow(<VideoCard {...props}/>)
     const card = wrapper.find('.card')
     const classes = card.props().className.split(' ')
@@ -31,9 +36,11 @@ describe('VideoCard Component Tests', () => {
   it('should contain video thumbnail', () => {
     const video = mockVideoObject()
     const props = {
-      darkTheme: true,
       video
     }
+    const darkTehme = true
+    reactredux.useSelector = jest.fn(() => darkTehme)
+
     const wrapper = shallow(<VideoCard {...props}/>)
     const image = wrapper.find('img')
     const imageProps = image.props()
@@ -44,9 +51,11 @@ describe('VideoCard Component Tests', () => {
   it('should contain card body with title and description', () => {
     const video = mockVideoObject()
     const props = {
-      darkTheme: true,
       video
     }
+    const darkTehme = true
+    reactredux.useSelector = jest.fn(() => darkTehme)
+
     const wrapper = shallow(<VideoCard {...props}/>)
     const cardBody = wrapper.find('.card-body')
     const bodyElements = cardBody.props().children

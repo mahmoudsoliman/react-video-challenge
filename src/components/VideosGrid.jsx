@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import VideoCard from './VideoCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'

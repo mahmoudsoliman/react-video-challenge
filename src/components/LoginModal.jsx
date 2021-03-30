@@ -1,85 +1,72 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
 import { loginModalTriggered, userLoggedIn } from '../actions/userActions'
 import * as authService from '../services/authService'
 import LoginForm from './LoginForm'
 
-class LoginModal extends Component {
-  state = {
-    username: '',
-    password: '',
-    errorMessage: null
+
+export default function LoginModal() {
+  const [username, setUsername] = useState('') 
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  const loginModalOpen = useSelector(state => state.user.loginModalOpen)
+  const darkTheme = useSelector(state => state.theme.darkTheme)
+
+  const dispatch = useDispatch()
+
+  const handleClose = () => {
+    setUsername('')
+    setPassword('')
+    setErrorMessage(null)    
+    dispatch(loginModalTriggered(false))
   }
 
-  handleClose = () => {
-    this.setState({
-      username: '',
-      password: '',
-      errorMessage: null
-    })
-    this.props.loginModalTriggered(false)
-  }
-
-  handleSubmit = async () => {
-    const {
-      username,
-      password
-    } = this.state
-
+  const handleSubmit = async () => {
     try {
       const user = await authService.login(username, password)
-      this.setState({
-        username: '',
-        password: '',
-        errorMessage: null
-      })
-      this.props.userLoggedIn(user)
+      setUsername('')
+      setPassword('')
+      setErrorMessage(null)    
+      dispatch(userLoggedIn(user))
     } catch (error) {
-      this.setState({
-        errorMessage: 'Username or password invalid'
-      })
+      setErrorMessage('Username or password invalid') 
     }
   }
 
-  handleChange = ({ currentTarget: input }) => {
+  const handleChange = ({ currentTarget: input }) => {
     const {name, value} = input
-    this.setState({ [name]: value })
+    switch (name) {
+      case 'username':
+        setUsername(value)
+        break;
+      case 'password':
+        setPassword(value)
+        break;
+      default:
+        break;
+    }
   }
 
-  render() {
-    const {
-      username,
-      password,
-      errorMessage
-    } = this.state
-
-    return (
-      <Modal show={this.props.loginModalOpen} onHide={this.handleClose} keyboard contentClassName={this.props.darkTheme? 'dark-theme' : 'light-theme'}>
-        <Modal.Header>
-          <Modal.Title className={this.props.darkTheme? 'dark-theme' : 'light-theme'}>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body >
-          {
-            this.props.loginModalOpen? (<LoginForm username={username} password={password} errorMessage={errorMessage} handleChange={this.handleChange}/>) : ""
-          }
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={this.handleSubmit}>
-            Login
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    )
-  }
+  return (
+    <Modal show={loginModalOpen} onHide={handleClose} keyboard contentClassName={darkTheme? 'dark-theme' : 'light-theme'}>
+      <Modal.Header>
+        <Modal.Title className={darkTheme? 'dark-theme' : 'light-theme'}>Login</Modal.Title>
+      </Modal.Header>
+      <Modal.Body >
+        {
+          loginModalOpen? (<LoginForm username={username} password={password} errorMessage={errorMessage} handleChange={handleChange}/>) : ""
+        }
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button variant="primary" onClick={handleSubmit}>
+          Login
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  )
 }
-
-const mapStateToProps = state => ({
-  loginModalOpen: state.user.loginModalOpen,
-  darkTheme: state.theme.darkTheme
-})
-
-export default connect(mapStateToProps, {loginModalTriggered, userLoggedIn})(LoginModal)
