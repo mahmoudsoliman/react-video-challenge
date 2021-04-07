@@ -13,10 +13,6 @@ const mockProps = () => {
 
 describe('DarkModeToggle component tests', () => {
   test('should render custom control with type switch', () => {
-    const props = {
-      ...mockProps(),
-      darkTheme: false
-    }
     const darkTehme = false
     reactredux.useSelector = jest.fn(() => darkTehme)
     reactredux.useDispatch = jest.fn( () => () => {})
