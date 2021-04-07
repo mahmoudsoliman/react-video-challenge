@@ -12,7 +12,7 @@ export default function VideosGrid() {
 
   useEffect(() => {
     dispatch(searchExecuted(query))
-  })
+  }, [])
 
   return (
     <div className="card-group row-cols-5">
