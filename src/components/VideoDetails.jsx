@@ -9,12 +9,15 @@ export default function VideoDetails(props) {
   const [relatedVideos, setRelatedVideos] = useState([])
 
   useEffect(() => {
-    const videoId = props.match.params.id
-    const video = await videoService.getVideoById(videoId)
-    if(!video) return <Redirect to="/"/>
-    const relatedVideos = await videoService.getRelatedVideos(videoId)
-    setVideo(video)
-    setRelatedVideos(relatedVideos)
+    const fetchVideoDetails = async () => {
+      const videoId = props.match.params.id
+      const video = await videoService.getVideoById(videoId)
+      if(!video) return <Redirect to="/"/>
+      const relatedVideos = await videoService.getRelatedVideos(videoId)
+      setVideo(video)
+      setRelatedVideos(relatedVideos)
+    }
+    fetchVideoDetails()
   }, [])
 
   return (

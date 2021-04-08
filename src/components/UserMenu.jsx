@@ -27,7 +27,6 @@ export default function UserMenu() {
 
   const handleSelect = (option) => {
     if(option === '1'){
-      const currentUser = this.props.currentUser
       if(currentUser){
         dispatch(userLoggedOut())
       }

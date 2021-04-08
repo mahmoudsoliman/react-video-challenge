@@ -18,7 +18,7 @@ class App extends Component {
         <LoginModal/>
         <Switch>
           <Route path="/favorites" component={Favorites}/>
-          <Route path="/:id" render={(props) => <VideoDetails {...props}/>}/>
+          <Route path="/:id" render={(props) => <VideoDetails key={props.match.params.id} {...props}/>}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>
