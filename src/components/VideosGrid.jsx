@@ -1,36 +1,30 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import VideoCard from './VideoCard'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { searchExecuted } from '../actions/searchActions'
-
 import { Link } from 'react-router-dom'
 
-export class VideosGrid extends Component {
-  componentDidMount() {
-    this.props.searchExecuted(this.props.query)
-  }
+export default function VideosGrid() {
+  const videos = useSelector(state => state.search.videos)
+  const query = useSelector(state => state.search.query)
+  const dispatch = useDispatch()
+  
+  
+  useEffect(() => {
+    dispatch(searchExecuted(query))
+  }, [dispatch, query])
 
-  render() {
-    const videos = this.props.videos
-    return (
-      <div className="card-group row-cols-5">
-        {
-          videos.map(video => (
-            <Link key={video.id} to={`/${video.id}`}>
-              <div className="col">
-                <VideoCard video={video}/>
-              </div>
-            </Link>
-          ))
-        }    
-      </div>
-    )
-  }
+  return (
+    <div className="card-group row-cols-5">
+      {
+        videos.map(video => (
+          <Link key={video.id} to={`/${video.id}`}>
+            <div className="col">
+              <VideoCard video={video}/>
+            </div>
+          </Link>
+        ))
+      }    
+    </div>
+  )
 }
-
-const mapStateToProps = state => ({
-  videos: state.search.videos,
-  query: state.search.query
-})
-
-export default connect(mapStateToProps, {searchExecuted})(VideosGrid)

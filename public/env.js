@@ -6,7 +6,7 @@ window.env = {
   "npm_config_only": "",
   "npm_config_commit_hooks": "true",
   "npm_config_browser": "",
-  "npm_package_gitHead": "c1ace99ec62f97cd792f697daba6a662450f7a2a",
+  "npm_package_gitHead": "a70626652637cddd55ced324b3b07c52746ec74a",
   "npm_package_dependencies_redux": "^4.0.5",
   "npm_config_also": "",
   "npm_package_devDependencies_babel_plugin_transform_class_properties": "^6.24.1",

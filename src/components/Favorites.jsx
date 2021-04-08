@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-class Favorites extends Component {
-  render() {
-    const videos = this.props.favorites
-    return (
-    this.props.currentUser? (
+export default function Favorites() {
+  const currentUser = useSelector(state => state.user.currentUser)
+  const videos = useSelector(state => state.user.favorites)
+  const darkTheme = useSelector(state => state.theme.darkTheme)
+  return (
+    currentUser? (
       <div>
-        <h1 className={`home-title ${this.props.darkTheme? 'dark-theme': 'light-theme'}`}>Favorites</h1>
+        <h1 className={`home-title ${darkTheme? 'dark-theme': 'light-theme'}`}>Favorites</h1>
         <div className="bg-transparent m-3">
           <ul className="list-group bg-transparent">
             {
@@ -19,11 +20,9 @@ class Favorites extends Component {
                       <div className="col-3  side-list-image">
                         <img alt="..." src={video.thumbnail}/>
                       </div>
-                      <div className={`col side-list-label text-truncate ${this.props.darkTheme? 'dark-theme' : 'light-theme'}`}>
+                      <div className={`col side-list-label text-truncate ${darkTheme? 'dark-theme' : 'light-theme'}`}>
                         {video.title}
                       </div>
-                      
-                    
                     </div>
                   </Link>
                 </li>
@@ -34,14 +33,5 @@ class Favorites extends Component {
       </div>
     ) :
     <Redirect to="/"/>
-    )
-  }
+  )
 }
-
-const mapStateToProps = state => ({
-  darkTheme: state.theme.darkTheme,
-  favorites: state.user.favorites,
-  currentUser: state.user.currentUser
-})
-
-export default connect(mapStateToProps)(Favorites)
