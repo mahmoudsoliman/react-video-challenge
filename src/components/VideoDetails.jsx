@@ -18,7 +18,7 @@ export default function VideoDetails(props) {
       setRelatedVideos(relatedVideos)
     }
     fetchVideoDetails()
-  }, [])
+  }, [props.match.params.id])
 
   return (
     video && relatedVideos?(
